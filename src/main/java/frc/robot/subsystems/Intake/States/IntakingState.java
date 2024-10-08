@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake.Intake;
 
 public class IntakingState extends Command {
-  /** Creates a new IntakingState. */
+  // Creates a new IntakingState.
   Intake intake;
   double power;
 
-  public IntakingState(Intake intake) {
+  public IntakingState(Intake intake, double d) {
     this.intake = intake;
     addRequirements(intake);
   }
