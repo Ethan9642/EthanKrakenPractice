@@ -12,8 +12,9 @@ public class IntakingState extends Command {
   Intake intake;
   double power;
 
-  public IntakingState(Intake intake, double d) {
+  public IntakingState(Intake intake, double power) {
     this.intake = intake;
+    this.power = power;
     addRequirements(intake);
   }
 

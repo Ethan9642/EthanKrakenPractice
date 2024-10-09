@@ -7,7 +7,6 @@ package frc.robot;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -16,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Feeder.Feeder;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Intake.States.IntakingState;
 
@@ -44,7 +44,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-
+    
     joystick.leftTrigger(0.1).whileTrue(new IntakingState(intake,0.9));
     joystick.rightTrigger(0.1).whileTrue(new IntakingState(intake,-0.9));
 
