@@ -4,10 +4,10 @@
 
 package frc.robot.subsystems.Intake;
 
-import com.revrobotics.CANSparkFlex;
 // Unnessesary?
 // import com.ctre.phoenix6.hardware.TalonFX;
-import com.revrobotics.CANSparkMax;
+// import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,7 +25,6 @@ public class Intake extends SubsystemBase {
 
   public void setPower(double power) {
     intakeMotor.set(power);
-    System.out.println("Setting poower!!!:  " + power);
   }
 
   @Override
