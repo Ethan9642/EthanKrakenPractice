@@ -1,12 +1,7 @@
 package frc.robot.subsystems.Feeder;
-
-// Unnessesary?
-// import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkFlex;
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Feeder {
     

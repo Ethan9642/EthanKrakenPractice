@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
@@ -15,9 +14,12 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import frc.robot.subsystems.Feeder.Feeder;
 import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.Feeder.Feeder;
+import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Intake.States.IntakingState;
+import frc.robot.subsystems.Feeder.States.FeedingState;
+import frc.robot.subsystems.Shooter.States.ShootingState;
 
 public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
@@ -26,7 +28,10 @@ public class RobotContainer {
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
   private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+
   private Intake intake;
+  private Feeder feeder;
+  private Shooter shooter;
 
   private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -71,10 +76,14 @@ public class RobotContainer {
 
   public void createSubSystems() {
     intake = new Intake();
+    feeder = new Feeder();
+    shooter = new Shooter();
   }
 
   public void createDefaultStates() {
     intake.setDefaultCommand(new IntakingState(intake,0.0));
+    intake.setDefaultCommand(new FeedingState(feeder,0.0));
+    intake.setDefaultCommand(new ShootingState(shooter,0.0));
   }
 
   public Command getAutonomousCommand() {
