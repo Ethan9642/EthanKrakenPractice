@@ -13,8 +13,7 @@ public class FeedingState extends Command {
   public FeedingState(Feeder feeder, double power) {
     this.feeder = feeder;
     this.power = power;
-    //??????
-    //addRequirements(feeder);
+    addRequirements(feeder);
   }
 
   @Override

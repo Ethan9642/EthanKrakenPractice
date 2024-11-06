@@ -2,8 +2,9 @@ package frc.robot.subsystems.Feeder;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Feeder {
+public class Feeder extends SubsystemBase {
     
   public CANSparkFlex feederMotor;
 

@@ -82,8 +82,8 @@ public class RobotContainer {
 
   public void createDefaultStates() {
     intake.setDefaultCommand(new IntakingState(intake,0.0));
-    intake.setDefaultCommand(new FeedingState(feeder,0.0));
-    intake.setDefaultCommand(new ShootingState(shooter,0.0));
+    feeder.setDefaultCommand(new FeedingState(feeder,0.0));
+    shooter.setDefaultCommand(new ShootingState(shooter,0.0));
   }
 
   public Command getAutonomousCommand() {

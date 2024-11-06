@@ -13,8 +13,7 @@ public class ShootingState extends Command {
   public ShootingState(Shooter shooter, double power) {
     this.shooter = shooter;
     this.power = power;
-    //??????
-    //addRequirements(feeder);
+    addRequirements(shooter);
   }
 
   @Override
