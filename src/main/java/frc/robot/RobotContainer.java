@@ -18,6 +18,7 @@ import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Feeder.Feeder;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Intake.States.IntakingState;
+import frc.robot.subsystems.Intake.States.PIDIntakingState;
 import frc.robot.subsystems.Feeder.States.FeedingState;
 import frc.robot.subsystems.Shooter.States.ShootingState;
 
@@ -50,8 +51,11 @@ public class RobotContainer {
 
   private void configureBindings() {
     
-    joystick.leftTrigger(0.1).whileTrue(new IntakingState(intake,0.9));
-    joystick.rightTrigger(0.1).whileTrue(new IntakingState(intake,-0.9));
+    double leftTrigger = joystick.getLeftTriggerAxis();
+    double rightTrigger = joystick.getRightTriggerAxis();
+
+    joystick.leftTrigger(0.1).whileTrue(new PIDIntakingState(1.0,leftTrigger));
+    joystick.rightTrigger(0.1).whileTrue(new PIDIntakingState(-1.0,rightTrigger));
 
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
         drivetrain.applyRequest(() -> drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with

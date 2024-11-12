@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
     shooterMotorBottom.set(power);
   }
 
-  // @Override
-  // public void periodic() {
-  // }
+  @Override
+  public void periodic() {
+  }
 }

@@ -19,7 +19,7 @@ public class Feeder extends SubsystemBase {
     feederMotor.set(power);
   }
 
-  // @Override
-  // public void periodic() {
-  // }
+  @Override
+  public void periodic() {
+  }
 }
