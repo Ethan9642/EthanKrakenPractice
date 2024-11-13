@@ -1,20 +1,20 @@
-package frc.robot.subsystems.Intake.States;
+package frc.robot.subsystems.Feeder.States;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.Feeder.Feeder;
 
-public class PIDIntakingState extends Command{
+public class PIDFeedingState extends Command{
     int kP = 1;
     int kI = 1;
     int kD = 1;
-    private Intake intake;
+    private Feeder feeder;
 
     PIDController pid = new PIDController(kP, kI, kD);
 
-    public PIDIntakingState(double Type, double TargetPower) {
+    public PIDFeedingState(double Type, double TargetPower) {
         pid.setTolerance(5, 10);
         pid.setIntegratorRange(-0.5, 0.5);        
         // Temperary code untill I implement PID
-        intake.setDefaultCommand(new IntakingState(intake,(Type*TargetPower)));
+        feeder.setDefaultCommand(new FeedingState(feeder,Type*TargetPower));
     }
 }

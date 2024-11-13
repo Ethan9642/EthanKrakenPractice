@@ -50,12 +50,15 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    
-    double leftTrigger = joystick.getLeftTriggerAxis();
-    double rightTrigger = joystick.getRightTriggerAxis();
+    // double leftTrigger = joystick.getLeftTriggerAxis();
+    // double rightTrigger = joystick.getRightTriggerAxis();
 
-    joystick.leftTrigger(0.1).whileTrue(new PIDIntakingState(1.0,leftTrigger));
-    joystick.rightTrigger(0.1).whileTrue(new PIDIntakingState(-1.0,rightTrigger));
+    joystick.leftTrigger(0.1).whileTrue(new PIDIntakingState(1.0,joystick.getLeftTriggerAxis()));
+    joystick.rightTrigger(0.1).whileTrue(new PIDIntakingState(-1.0,joystick.getRightTriggerAxis()));
+    // Need to add Feeder and Shooter
+    // joystick.leftTrigger(0.1).whileTrue(new PIDIntakingState(1.0,joystick.getLeftTriggerAxis()));
+    // joystick.rightTrigger(0.1).whileTrue(new PIDIntakingState(-1.0,joystick.getRightTriggerAxis()));
+    
 
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
         drivetrain.applyRequest(() -> drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with
@@ -66,7 +69,7 @@ public class RobotContainer {
 
     joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick.b().whileTrue(drivetrain
-        .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+      .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
     joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
