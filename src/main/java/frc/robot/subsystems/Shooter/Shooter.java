@@ -8,40 +8,39 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
     
-  public CANSparkFlex shooterMotorTop;
-  public CANSparkFlex shooterMotorBottom;
+  public CANSparkFlex shooterTopMotor;
+  public CANSparkFlex shooterBottomMotor;
 
-  public SparkPIDController controller; // do for both motors
+  public SparkPIDController shooterTopPID;
+  public SparkPIDController shooterBottomPID;
 
   public Shooter() {
-    shooterMotorTop = new CANSparkFlex(16,MotorType.kBrushless);
-    shooterMotorTop.setSmartCurrentLimit(80);
-    shooterMotorTop.setInverted(true);
-    shooterMotorTop.setIdleMode(IdleMode.kCoast);
+    shooterTopMotor = new CANSparkFlex(16,MotorType.kBrushless);
+    shooterTopMotor.setSmartCurrentLimit(80);
+    shooterTopMotor.setInverted(true);
+    shooterTopMotor.setIdleMode(IdleMode.kCoast);
 
-    shooterMotorBottom = new CANSparkFlex(26,MotorType.kBrushless);
-    shooterMotorBottom.setSmartCurrentLimit(80);
-    shooterMotorBottom.setInverted(false);
-    shooterMotorBottom.setIdleMode(IdleMode.kCoast);
+    shooterTopPID = shooterTopMotor.getPIDController(); // each motor
+    shooterTopPID.setP(02343);
+    shooterTopPID.setI(0.002);
+    shooterTopPID.setD(0); // set for each
+    shooterTopPID.setReference(1, ControlType.kVelocity);
 
-    controller = shooterMotorTop.getPIDController(); // each motor
-    controller.setP(02343);
-    controller.setI(0.002);
-    controller.setD(0); // set for each
-    controller.setReference(1, ControlType.kVelocity);
+    shooterBottomMotor = new CANSparkFlex(26,MotorType.kBrushless);
+    shooterBottomMotor.setSmartCurrentLimit(80);
+    shooterBottomMotor.setInverted(false);
+    shooterBottomMotor.setIdleMode(IdleMode.kCoast);
 
-    controller = shooterMotorBottom.getPIDController(); // each motor
-    controller.setP(10);
-    controller.setI(0.002);
-    controller.setD(0); // set for each
-    controller.setReference(1, ControlType.kVelocity);
-    
-    // controller.setReference(1, ControlType.kVelocity);
+    shooterBottomPID = shooterBottomMotor.getPIDController();
+    shooterBottomPID.setP(10);
+    shooterBottomPID.setI(0.002);
+    shooterBottomPID.setD(0);
+    shooterBottomPID.setReference(1, ControlType.kVelocity);
   }
 
   public void setPower(double power) {
-    shooterMotorTop.set(power);
-    shooterMotorBottom.set(power);
+    shooterTopMotor.set(power);
+    shooterBottomMotor.set(power);
   }
 
   @Override

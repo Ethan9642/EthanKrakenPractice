@@ -8,19 +8,29 @@ package frc.robot.subsystems.Intake;
 // import com.ctre.phoenix6.hardware.TalonFX;
 // import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.SparkPIDController;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
 
   public CANSparkFlex intakeMotor;
+  public SparkPIDController intakePID;
 
   public Intake() {
     intakeMotor = new CANSparkFlex(15, MotorType.kBrushless);
     intakeMotor.setSmartCurrentLimit(80);
     intakeMotor.setInverted(false);
     intakeMotor.setIdleMode(IdleMode.kCoast);
+
+    intakePID =intakeMotor.getPIDController(); // each motor
+    intakePID.setP(10);
+    intakePID.setI(0.002);
+    intakePID.setD(0); // set for each
+    intakePID.setReference(1, ControlType.kVelocity);
   }
 
   public void setPower(double power) {
