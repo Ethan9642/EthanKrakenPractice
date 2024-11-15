@@ -10,7 +10,6 @@ public class Shooter extends SubsystemBase {
     
   public CANSparkFlex shooterTopMotor;
   public CANSparkFlex shooterBottomMotor;
-
   public SparkPIDController shooterTopPID;
   public SparkPIDController shooterBottomPID;
 
@@ -19,18 +18,16 @@ public class Shooter extends SubsystemBase {
     shooterTopMotor.setSmartCurrentLimit(80);
     shooterTopMotor.setInverted(true);
     shooterTopMotor.setIdleMode(IdleMode.kCoast);
-
-    shooterTopPID = shooterTopMotor.getPIDController(); // each motor
+    shooterTopPID = shooterTopMotor.getPIDController();
     shooterTopPID.setP(02343);
     shooterTopPID.setI(0.002);
-    shooterTopPID.setD(0); // set for each
+    shooterTopPID.setD(0);
     shooterTopPID.setReference(1, ControlType.kVelocity);
 
     shooterBottomMotor = new CANSparkFlex(26,MotorType.kBrushless);
     shooterBottomMotor.setSmartCurrentLimit(80);
     shooterBottomMotor.setInverted(false);
     shooterBottomMotor.setIdleMode(IdleMode.kCoast);
-
     shooterBottomPID = shooterBottomMotor.getPIDController();
     shooterBottomPID.setP(10);
     shooterBottomPID.setI(0.002);
@@ -44,6 +41,5 @@ public class Shooter extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-  }
+  public void periodic() {}
 }

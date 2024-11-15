@@ -3,16 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems.Intake;
-
-// Unnessesary?
-// import com.ctre.phoenix6.hardware.TalonFX;
-// import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkPIDController;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
@@ -25,11 +20,10 @@ public class Intake extends SubsystemBase {
     intakeMotor.setSmartCurrentLimit(80);
     intakeMotor.setInverted(false);
     intakeMotor.setIdleMode(IdleMode.kCoast);
-
-    intakePID =intakeMotor.getPIDController(); // each motor
+    intakePID = intakeMotor.getPIDController();
     intakePID.setP(10);
     intakePID.setI(0.002);
-    intakePID.setD(0); // set for each
+    intakePID.setD(0);
     intakePID.setReference(1, ControlType.kVelocity);
   }
 
@@ -38,7 +32,5 @@ public class Intake extends SubsystemBase {
   }
 
   @Override
-  // what does this do
-  public void periodic() {
-  }
+  public void periodic() {}
 }
